@@ -1,0 +1,103 @@
+\\Class Task
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+
+    internal class Task
+    {
+        public string Name { get; set; }
+        public void PrintTask()
+        {
+            Console.WriteLine(Name);
+        }
+    }
+    
+    
+    \\Class TaskManager
+    
+    
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace ToDo_App1
+{
+    internal class TaskManager
+    {
+        private static List<Task> tasks = new List<Task>();
+
+        public static void AddTask(Task task)
+        {
+            string TaskName;
+            Console.Write("Enter the name of task : ");
+
+            TaskName = Console.ReadLine();
+            task.Name = TaskName;
+
+            tasks.Add(task);
+        }
+
+        public static void DeleteTask(Task task)
+        {
+            string TaskName;
+            Console.WriteLine("Enter a name of task to delet : ");
+            TaskName = Console.ReadLine();
+
+
+
+            tasks.Remove(task);
+
+            Console.WriteLine("task Deleted seccassfaly");
+        }
+
+        public static void SearchForTask(string name)
+        {
+
+
+            int index = -1;
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                if (tasks[i].Name == name)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index != -1)
+            {
+                Console.WriteLine($"Task '{name}' found at index {index}");
+            }
+            else
+            {
+                Console.WriteLine($"Task '{name}' not found");
+            }
+        }
+    }
+}
+
+
+\\Program
+// See https://aka.ms/new-console-template for more information
+using static DoTo_App1.TaskManagers;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+Console.WriteLine("Hello, World!");
+
+Task task1 = new Task(); Task task2 = new Task();
+    Task task3 = new Task(); Task task4 = new Task();
+
+    TaskManager.AddTask(task1); TaskManager.AddTask(task2);
+    TaskManager.AddTask(task3); TaskManager.AddTask(task4);
+
+    TaskManager.DeleteTask(task2);
+    TaskManager.SearchForTask(task3.Name);
+    Console.ReadKey();
+
+
